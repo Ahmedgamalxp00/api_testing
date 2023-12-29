@@ -16,7 +16,7 @@ class HomeViewBody extends StatelessWidget {
         CustomBottn(
           text: 'Add Plan',
           ontap: () {
-           
+            context.push(AppRouter.kAddPlanView);
           },
         ),
       ],
