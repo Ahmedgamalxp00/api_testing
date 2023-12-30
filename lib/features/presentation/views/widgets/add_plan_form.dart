@@ -1,10 +1,6 @@
-import 'dart:convert';
-
-import 'package:api_testing/core/constants.dart';
 import 'package:api_testing/core/utils/app_router.dart';
 import 'package:api_testing/features/data/models/channel/channel.model.dart';
-import 'package:api_testing/features/data/models/channel/plan_desc.model.dart';
-import 'package:api_testing/features/data/models/channel/telegram_group.model.dart';
+
 import 'package:api_testing/features/presentation/controllers/add_cubit/add_plan_cubit.dart';
 import 'package:api_testing/features/presentation/views/widgets/custom_textformfield.dart';
 import 'package:api_testing/features/presentation/views/widgets/rounded_botton.dart';
@@ -31,7 +27,7 @@ class AddPlanForm extends StatelessWidget {
             animType: AnimType.rightSlide,
             title: 'Plan added successfully',
             btnOkOnPress: () {
-              context.pushReplacement(AppRouter.kHomeView);
+              context.go(AppRouter.kHomeView);
             },
           ).show();
         } else if (state is AddPlanFailure) {

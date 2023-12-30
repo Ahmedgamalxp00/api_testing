@@ -1,6 +1,5 @@
 import 'package:api_testing/features/data/models/channel/channel.model.dart';
 import 'package:api_testing/features/presentation/views/widgets/custom_text.dart';
-import 'package:api_testing/features/presentation/views/widgets/desc_item.dart';
 import 'package:flutter/material.dart';
 
 class PlanItem extends StatelessWidget {
