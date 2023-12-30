@@ -18,6 +18,10 @@ class PlansCubit extends Cubit<PlansState> {
     }, (plans) {
       productList = plans;
       emit(PlansSuccess(plans));
+      @override
+      Future<void> close() {
+        return super.close();
+      }
     });
   }
 }

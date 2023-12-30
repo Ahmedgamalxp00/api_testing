@@ -1,6 +1,8 @@
 import 'package:api_testing/core/utils/app_router.dart';
+import 'package:api_testing/features/data/models/channel/channel.model.dart';
 import 'package:api_testing/features/presentation/controllers/plans_cubit/plans_cubit.dart';
 import 'package:api_testing/features/presentation/views/widgets/plan_item.dart';
+import 'package:api_testing/features/presentation/views/widgets/shimer_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +18,7 @@ class HomeSlider extends StatelessWidget {
         if (state is PlansSuccess) {
           return CarouselSlider(
             options: CarouselOptions(
+              initialPage: state.plans.length - 1,
               aspectRatio: 0.75,
               clipBehavior: Clip.none,
               enlargeCenterPage: true,
@@ -27,7 +30,7 @@ class HomeSlider extends StatelessWidget {
                 builder: (BuildContext context) {
                   return GestureDetector(
                       onTap: () {
-                        context.push(AppRouter.kPlanView, extra: i);
+                        context.pushReplacement(AppRouter.kPlanView, extra: i);
                       },
                       child: PlanItem(
                         plan: i,
@@ -41,10 +44,8 @@ class HomeSlider extends StatelessWidget {
             child: Text(state.erorrMassage),
           );
         } else {
-          return const Center(
-            child: CircularProgressIndicator(
-              color: Colors.blue,
-            ),
+          return ShimmerWidget(
+            plan: PlanModel(),
           );
         }
       },

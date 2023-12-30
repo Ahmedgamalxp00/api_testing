@@ -5,15 +5,25 @@ class CustomFormField extends StatelessWidget {
       {super.key,
       required this.hint,
       this.onchanged,
-      this.textInputType = TextInputType.text});
+      this.textInputType = TextInputType.text,
+      this.initialValue = '',
+      this.onFieldSubmitted,
+      this.onSaved});
   final String hint;
+  final String initialValue;
   final Function(String)? onchanged;
+  final Function(String)? onFieldSubmitted;
+  final Function(String?)? onSaved;
   final TextInputType textInputType;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.only(bottom: 20),
       child: TextFormField(
+          onFieldSubmitted: onFieldSubmitted,
+          onSaved: onSaved,
+          maxLines: null,
+          initialValue: initialValue,
           keyboardType: textInputType,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
@@ -27,8 +37,8 @@ class CustomFormField extends StatelessWidget {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: const TextStyle(fontSize: 20),
+            label: Text(hint),
+            labelStyle: const TextStyle(fontSize: 20),
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             border: OutlineInputBorder(

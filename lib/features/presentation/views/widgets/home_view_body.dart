@@ -14,10 +14,17 @@ class HomeViewBody extends StatelessWidget {
       children: [
         const HomeSlider(),
         CustomBottn(
-          text: 'Add Plan',
           ontap: () {
-            context.push(AppRouter.kAddPlanView);
+            context.pushReplacement(AppRouter.kAddPlanView);
           },
+          width: 200,
+          child: const Text(
+            'Add Plan',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+            ),
+          ),
         ),
       ],
     );

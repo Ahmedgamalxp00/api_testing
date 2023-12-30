@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomBottn extends StatelessWidget {
-  const CustomBottn({super.key, this.ontap, required this.text});
+  const CustomBottn(
+      {super.key, this.ontap, required this.child, required this.width});
   final Function()? ontap;
-  final String text;
+  final Widget child;
+  final double width;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,18 +15,12 @@ class CustomBottn extends StatelessWidget {
         color: Colors.blue,
       ),
       height: 50,
-      width: 200,
+      width: width,
       child: MaterialButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        onPressed: ontap,
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-          ),
-        ),
-      ),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          onPressed: ontap,
+          child: child),
     );
   }
 }

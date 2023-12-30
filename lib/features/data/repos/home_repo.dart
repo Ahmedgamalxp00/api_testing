@@ -5,5 +5,8 @@ import 'package:dartz/dartz.dart';
 abstract class HomeRepo {
   Future<Either<Failure, List<PlanModel>>> getAllPlans();
   Future<Either<Failure, Map<String, dynamic>>> addPlan(
-      {required int id, required PlanModel plan});
+      {required PlanModel plan});
+  Future<Either<Failure, Map<String, dynamic>>> updetePlan(
+      {required PlanModel plan, required int id});
+  Future<Either<Failure, Map<String, dynamic>>> deletePlan({required int id});
 }

@@ -29,10 +29,39 @@ class HomeRepoImpl implements HomeRepo {
 
   @override
   Future<Either<Failure, Map<String, dynamic>>> addPlan(
-      {required int id, required PlanModel plan}) async {
+      {required PlanModel plan}) async {
     try {
       Map<String, dynamic> jsonPlan = plan.toJson();
       var data = await apiService.post(data: jsonPlan);
+      return right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErorr(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> deletePlan(
+      {required int id}) async {
+    try {
+      var data = await apiService.delete(id: id);
+      return right(data);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioErorr(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Map<String, dynamic>>> updetePlan(
+      {required PlanModel plan, required int id}) async {
+    try {
+      Map<String, dynamic> jsonPlan = plan.toJson();
+      var data = await apiService.put(data: jsonPlan, id: id);
       return right(data);
     } catch (e) {
       if (e is DioException) {
